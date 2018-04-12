@@ -20,12 +20,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
-    //general methods
-
-
-
-
     //main method for testing in IDE
     public static void main(String[] args) {
         Application.launch(args);

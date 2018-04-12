@@ -1,5 +1,6 @@
 package hw9;
 
+//imports
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
@@ -24,7 +25,7 @@ public class SecondaryMenu extends Menu {
 
     //METHODS
     //get secondary Menu Scene
-    public Scene getSecondaryMenuScene() {
+    private Scene getSecondaryMenuScene() {
 
         //borderpane to hold the vbox
         BorderPane secondaryMenuPane = new BorderPane();
@@ -151,7 +152,7 @@ public class SecondaryMenu extends Menu {
     }
 
     //get the current size choice
-    public void getSizeMenuChoiceVariables (Text text) {
+    private void getSizeMenuChoiceVariables (Text text) {
         String sizeString = text.getText();
         sizeString = sizeString.substring(0,2);
         sizeString = sizeString.trim();
@@ -160,7 +161,7 @@ public class SecondaryMenu extends Menu {
     }
 
     //get the current style choice
-    public void getStyleMenuChoiceVariables (Text text) {
+    private void getStyleMenuChoiceVariables (Text text) {
         String style = text.getText();
         System.out.println(style);
     }

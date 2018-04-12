@@ -30,7 +30,7 @@ public class MouseHoverHandler {
     //METHODS
 
     //text entered mouse event
-    public EventHandler<MouseEvent> initMouseEnteredHandler(Text text) {
+    private EventHandler<MouseEvent> initMouseEnteredHandler(Text text) {
 
         EventHandler<MouseEvent> enteredEvent = (event -> {
             text.setFill(Color.WHITE);
@@ -41,7 +41,7 @@ public class MouseHoverHandler {
     }
 
     //text exited mouse event
-    public EventHandler<MouseEvent> initMouseExitedHandler(Text text) {
+    private EventHandler<MouseEvent> initMouseExitedHandler(Text text) {
 
         EventHandler<MouseEvent> enteredEvent = (event -> {
             text.setFill(Color.BLACK);
