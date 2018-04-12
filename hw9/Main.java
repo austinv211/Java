@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 
 
 //class for the memory game
-public class MemoryGame extends Application {
+public class Main extends Application {
 
     //override the start method
     @Override
