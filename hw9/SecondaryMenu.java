@@ -1,3 +1,11 @@
+/*
+NAME: SecondaryMenu.java
+DESCRIPTION: Class for secondary menu to choose game options
+AUTHOR: Austin Vargason
+DATE MODIFIED: 4/12/18
+ */
+
+//homework 9
 package hw9;
 
 //imports
@@ -10,10 +18,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+//secondary menu class
 public class SecondaryMenu extends Menu {
 
+    //data fields
     private Scene scene;
 
+    //constructors
     public SecondaryMenu() {
         this.scene = getSecondaryMenuScene();
     }

@@ -1,3 +1,11 @@
+/*
+NAME: MainMenu.java
+DESCRIPTION: Class for Main Menu with playgame option, launches secondary option menu
+AUTHOR: Austin Vargason
+DATE MODIFIED: 4/12/18
+ */
+
+//homework 9 package
 package hw9;
 
 //imports
@@ -8,10 +16,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+//main menu class
 public class MainMenu extends Menu {
 
+    //data fields
     private Scene scene;
 
+    //constructors
     public MainMenu (Stage stage) {
         this.scene = getStartMenuScene(stage);
     }
@@ -70,8 +81,14 @@ public class MainMenu extends Menu {
         exitGameText.setOnMouseEntered(new MouseHoverHandler(exitGameText).getMouseEnteredHandler());
         exitGameText.setOnMouseExited(new MouseHoverHandler(exitGameText).getMouseExitedHandler());
 
+        //set the play game event handler
         playGameText.setOnMouseClicked(event -> {
             primaryStage.setScene(new SecondaryMenu().getScene());
+        });
+
+        //if the quit game button is clicked, exit the program
+        exitGameText.setOnMouseClicked(event -> {
+            System.exit(0);
         });
 
         //set style and alignment

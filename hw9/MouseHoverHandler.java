@@ -20,11 +20,11 @@ public class MouseHoverHandler {
     //GETTERS
 
     public EventHandler<MouseEvent> getMouseEnteredHandler() {
-        return mouseEnteredHandler;
+        return this.mouseEnteredHandler;
     }
 
     public EventHandler<MouseEvent> getMouseExitedHandler() {
-        return mouseExitedHandler;
+        return this.mouseExitedHandler;
     }
 
     //METHODS

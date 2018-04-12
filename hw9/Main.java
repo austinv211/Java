@@ -1,3 +1,10 @@
+/*
+NAME: Main.java
+DESCRIPTION: Main Class for game and contains start method
+AUTHOR: Austin Vargason
+DATE MODIFIED: 4/12/18
+ */
+
 //homework 9 package
 package hw9;
 
