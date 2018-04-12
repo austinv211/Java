@@ -108,13 +108,13 @@ public class MemoryGame extends Application {
         styleOptions.setAlignment(Pos.CENTER);
 
         //text for style options
-        Text animals = new Text("Animals");
-        Text food = new Text("Food");
+        Text music = new Text("Music");
+        Text cities = new Text("Cities");
         Text shapes = new Text("Shapes");
 
         //add text to styleOptions
-        styleOptions.getChildren().add(animals);
-        styleOptions.getChildren().add(food);
+        styleOptions.getChildren().add(music);
+        styleOptions.getChildren().add(cities);
         styleOptions.getChildren().add(shapes);
 
         //set the style of the style options
