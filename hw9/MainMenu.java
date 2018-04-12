@@ -24,7 +24,8 @@ public class MainMenu extends Menu {
 
     //constructors
     public MainMenu (Stage stage) {
-        this.scene = getStartMenuScene(stage);
+        super(stage);
+        this.scene = getStartMenuScene();
     }
 
     //GETTERS
@@ -34,19 +35,19 @@ public class MainMenu extends Menu {
 
     //Methods to build the start menu
     //method to build startMenuScene
-    private Scene getStartMenuScene(Stage primaryStage) {
-        BorderPane startMenuBackgroundPane = getStartMenuBorderPane(primaryStage);
+    private Scene getStartMenuScene() {
+        BorderPane startMenuBackgroundPane = getStartMenuBorderPane();
         Scene startMenuScene = new Scene(startMenuBackgroundPane, 500, 500);
 
         return  startMenuScene;
     }
 
     //method to build startMenuBorderPane
-    private BorderPane getStartMenuBorderPane(Stage primaryStage) {
+    private BorderPane getStartMenuBorderPane() {
         BorderPane startMenuBorderPane = new BorderPane();
 
         //add menu to center
-        VBox menuItemsPane = getMenuItemsVbox(primaryStage);
+        VBox menuItemsPane = getMenuItemsVbox();
 
         //set the top
         Text title = new Text("Match Game");
@@ -64,7 +65,7 @@ public class MainMenu extends Menu {
     }
 
     //method to build menu items group
-    private VBox getMenuItemsVbox(Stage primaryStage) {
+    private VBox getMenuItemsVbox() {
         //create Vbox to Store menu items
         VBox menuItemsPane = new VBox();
 
@@ -83,7 +84,7 @@ public class MainMenu extends Menu {
 
         //set the play game event handler
         playGameText.setOnMouseClicked(event -> {
-            primaryStage.setScene(new SecondaryMenu().getScene());
+            new SecondaryMenu(super.getStage());
         });
 
         //if the quit game button is clicked, exit the program

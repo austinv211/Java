@@ -36,7 +36,6 @@ public class MouseHoverHandler {
     }
 
     //METHODS
-
     //text entered mouse event
     private EventHandler<MouseEvent> initMouseEnteredHandler(Text text) {
 

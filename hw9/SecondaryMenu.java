@@ -9,29 +9,55 @@ DATE MODIFIED: 4/12/18
 package hw9;
 
 //imports
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 //secondary menu class
 public class SecondaryMenu extends Menu {
 
     //data fields
     private Scene scene;
+    private int sizeChoice;
+    private String styleChoice;
 
     //constructors
-    public SecondaryMenu() {
+    public SecondaryMenu(Stage stage) {
+        super(stage);
         this.scene = getSecondaryMenuScene();
+        this.styleChoice = "";
+        super.getStage().setScene(this.scene);
     }
 
     //getters
     public Scene getScene() {
         return this.scene;
+    }
+
+    public int getSizeChoice() {
+        return sizeChoice;
+    }
+
+    public String getStyleChoice() {
+        return styleChoice;
+    }
+
+    //setters
+    private void setSizeChoice(int sizeChoice) {
+        this.sizeChoice = sizeChoice;
+    }
+
+    private void setStyleChoice(String styleChoice) {
+        this.styleChoice = styleChoice;
     }
 
     //METHODS
@@ -152,8 +178,25 @@ public class SecondaryMenu extends Menu {
         secondaryMenu.setAlignment(Pos.CENTER); //set the alignment
         secondaryMenu.setSpacing(20); //set the spacing
 
+        //create start game button
+        HBox bottom = new HBox();
+        Button startGameButton = new Button("Start Game"); //set button
+        startGameButton.setStyle(super.getTextStyle()); //set style
+        bottom.getChildren().add(startGameButton); //add to hbox
+        bottom.setAlignment(Pos.CENTER_RIGHT); //set pos
+        bottom.setPadding(new Insets(10, 30, 30, 10)); //set the padding
+
+        //set startGameButton handler
+        startGameButton.setOnMouseClicked(event -> {
+            new MatchGame(this.sizeChoice, super.getStage()); //go to secondary menu
+        });
+
+
         //set the center to the secondary menu vbox
         secondaryMenuPane.setCenter(secondaryMenu);
+
+        //set the bottom to start game button
+        secondaryMenuPane.setBottom(bottom);
 
         //create the scene
         Scene secondaryMenuScene = new Scene(secondaryMenuPane, 500, 500);
@@ -168,13 +211,13 @@ public class SecondaryMenu extends Menu {
         sizeString = sizeString.substring(0,2);
         sizeString = sizeString.trim();
         int size = Integer.parseInt(sizeString);
-        System.out.println(size);
+        setSizeChoice(size);
     }
 
     //get the current style choice
     private void getStyleMenuChoiceVariables (Text text) {
         String style = text.getText();
-        System.out.println(style);
+        setStyleChoice(style);
     }
 
 
