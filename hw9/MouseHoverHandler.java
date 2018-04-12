@@ -1,3 +1,11 @@
+/*
+NAME: MouseHoverHandler.java
+DESCRIPTION: Class to store hover handler (mouse entered and exited)
+AUTHOR: Austin Vargason
+DATE MODIFIED: 4/12/18
+ */
+
+//homework 9 package
 package hw9;
 
 //imports
@@ -8,17 +16,17 @@ import javafx.scene.text.Text;
 
 public class MouseHoverHandler {
 
+    //data fields
     private EventHandler<MouseEvent> mouseEnteredHandler;
     private EventHandler<MouseEvent> mouseExitedHandler;
 
-
+    //constructor
     public MouseHoverHandler(Text text) {
         this.mouseEnteredHandler = initMouseEnteredHandler(text);
         this.mouseExitedHandler = initMouseExitedHandler(text);
     }
 
     //GETTERS
-
     public EventHandler<MouseEvent> getMouseEnteredHandler() {
         return this.mouseEnteredHandler;
     }
