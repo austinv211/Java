@@ -37,7 +37,7 @@ public class MainMenu extends Menu {
     //method to build startMenuScene
     private Scene getStartMenuScene() {
         BorderPane startMenuBackgroundPane = getStartMenuBorderPane();
-        Scene startMenuScene = new Scene(startMenuBackgroundPane, 500, 500);
+        Scene startMenuScene = new Scene(startMenuBackgroundPane, 768, 576);
 
         return  startMenuScene;
     }
@@ -60,6 +60,7 @@ public class MainMenu extends Menu {
         //add vbox to center of borderpane
         startMenuBorderPane.setCenter(menuItemsPane);
 
+        startMenuBorderPane.setStyle(super.getBackgroundStyle());
 
         return startMenuBorderPane;
     }
