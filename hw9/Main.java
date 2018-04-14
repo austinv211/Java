@@ -23,6 +23,7 @@ public class Main extends Application {
         Scene startMenuScene = mainMenu.getScene();
         primaryStage.setScene(startMenuScene);
         primaryStage.setTitle("Main");
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
