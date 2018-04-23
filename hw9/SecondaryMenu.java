@@ -89,7 +89,7 @@ public class SecondaryMenu extends Menu {
 
         //set startGameButton handler
         startGameButton.setOnMouseClicked(event -> {
-            new MatchGame(this.sizeChoice, super.getStage()); //go to secondary menu
+            new MatchGame(this.sizeChoice, this.styleChoice, super.getStage()); //go to secondary menu
         });
 
         //add to borderpane
