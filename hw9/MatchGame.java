@@ -71,7 +71,7 @@ public class MatchGame {
         ArrayList<Card> cardArrayList = new ArrayList<Card>();
 
 
-        for (int i = 0; i < (numberOfCards / 2); i++) {
+        for (int i = 1; i <= (numberOfCards / 2); i++) {
             cardArrayList.add(new Card(this.style, this.size, i));
             cardArrayList.add(new Card(this.style, this.size, i));
         }

@@ -4,10 +4,11 @@ import javafx.animation.RotateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Node;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.scene.text.Text;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import java.util.Collections;
@@ -33,6 +34,7 @@ public class Card extends StackPane {
             this.cardSize = 50;
         }
 
+        this.style = style;
         numberOfClicks = 0;
         this.matchNumber = matchNumber;
         initCard();
@@ -81,7 +83,13 @@ public class Card extends StackPane {
         Ellipse cardFront = new Ellipse(10, 10);
         cardFront.setFill(Color.LIGHTBLUE);
         cardFront.setStroke(Color.BLACK);
-        Text cardBack = new Text("" + this.matchNumber);
+
+        //picture style for the card
+        String url = "/Images/" + this.style + "/" + this.matchNumber + ".jpg";
+        System.out.println(url);
+        ImageView cardBack = new ImageView(new Image(url));
+        cardBack.setFitHeight(this.cardSize - 20);
+        cardBack.setFitWidth(this.cardSize - 20);
 
         this.getChildren().add(cardBack);
         this.getChildren().add(cardBody);
@@ -118,7 +126,11 @@ public class Card extends StackPane {
 
             ObservableList<Node> paneList = FXCollections.observableArrayList(this.getChildren());
 
+            paneList.get(2).setVisible(false);
+
             Collections.swap(paneList, 0, 2);
+
+            paneList.get(2).setVisible(true);
 
             this.getChildren().setAll(paneList);
 

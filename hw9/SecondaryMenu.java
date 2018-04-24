@@ -35,7 +35,6 @@ public class SecondaryMenu extends Menu {
     public SecondaryMenu(Stage stage) {
         super(stage);
         this.scene = getSecondaryMenuScene();
-        this.styleChoice = "";
         this.isSizeChoiceChosen = false;
         this.isStyleChoiceChosen = false;
         super.getStage().setScene(this.scene);
