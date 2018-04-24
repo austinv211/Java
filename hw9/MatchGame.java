@@ -9,10 +9,17 @@ DATE MODIFIED: 4/12/18
 package hw9;
 
 //imports
+import javafx.animation.KeyFrame;
 import javafx.animation.PauseTransition;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
@@ -22,10 +29,13 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -37,7 +47,7 @@ public class MatchGame {
     private Scene scene;
     private int size;
     private Stage stage;
-    private Duration time;
+    private StringProperty time;
     private IntegerProperty score;
     private int maxScore;
 
@@ -46,7 +56,7 @@ public class MatchGame {
         this.score = new SimpleIntegerProperty(0);
         this.size = size;
         this.maxScore = (int)((Math.pow(size, 2)) / 2);
-        this.time = new Duration(0);
+        this.time = new SimpleStringProperty("00");
         this.stage = stage;
         this.style = style;
         this.scene = initGameScene();
@@ -119,12 +129,28 @@ public class MatchGame {
 
 
         //text to hold the time
-        Text timeText = new Text("" + time);
-        timeText.setStyle("-fx-font: 24 Arial"); //set the text style
+        Text timerText = new Text("");
+        GameTimer gameTimer = new GameTimer();
+        timerText.textProperty().bind(Bindings.convert(gameTimer.getTime()));
+        Label timerLabel = new Label("Time: ", timerText);
+        timerLabel.setContentDisplay(ContentDisplay.RIGHT);
+
+
+        //group for label and timer
+        Group timeGroup = new Group(timerLabel, timerText);
+        timeGroup.setStyle("-fx-font: 24 Arial");
+
+        EventHandler<ActionEvent> eventHandler = event -> {
+            gameTimer.setTime(gameTimer.getMillisecondsTotal() + 1);
+        };
+
+        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), eventHandler));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
 
         //add to left and right pane
         leftPane.getChildren().add(scoreGroup);
-        rightPane.getChildren().add(timeText);
+        rightPane.getChildren().add(timeGroup);
 
         //set the nodes of the borderPane
         borderPane.setCenter(cardGrid);

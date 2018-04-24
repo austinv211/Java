@@ -1,5 +1,6 @@
 package hw9;
 
+import javafx.animation.PauseTransition;
 import javafx.animation.RotateTransition;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,6 +122,7 @@ public class Card extends StackPane {
     public void playCardFlip() {
 
         if (!this.isMatched) {
+            numberOfClicks++;
             this.isFrontShowing = !isFrontShowing();
             this.cardFlip.play();
 
@@ -130,11 +132,15 @@ public class Card extends StackPane {
 
             Collections.swap(paneList, 0, 2);
 
-            paneList.get(2).setVisible(true);
+            PauseTransition pauseTransition = new PauseTransition();
+            pauseTransition.setDuration(Duration.millis(100));
+            pauseTransition.setOnFinished(event -> {
+                paneList.get(2).setVisible(true);
+                this.getChildren().setAll(paneList);
+            });
 
-            this.getChildren().setAll(paneList);
+            pauseTransition.play();
 
-            numberOfClicks++;
         }
     }
 

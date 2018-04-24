@@ -101,8 +101,9 @@ public class SecondaryMenu extends Menu {
 
         //text for style options
         Text music = new Text("Music");
+        Text shapes = new Text("Movies");
         Text cities = new Text("Cities");
-        Text shapes = new Text("Shapes");
+
 
         //add text to styleOptions
         styleOptions.getChildren().add(music);
