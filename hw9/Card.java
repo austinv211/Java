@@ -86,10 +86,10 @@ public class Card extends StackPane {
 
         //picture style for the card
         String url = "/Images/" + this.style + "/" + this.matchNumber + ".jpg";
-        System.out.println(url);
         ImageView cardBack = new ImageView(new Image(url));
         cardBack.setFitHeight(this.cardSize - 20);
         cardBack.setFitWidth(this.cardSize - 20);
+        cardBack.setPreserveRatio(true);
 
         this.getChildren().add(cardBack);
         this.getChildren().add(cardBody);
