@@ -62,7 +62,6 @@ public class MatchGame {
         this.scene = initGameScene();
         this.stage.setScene(this.scene);
         this.stage.setResizable(true);
-        this.stage.setFullScreen(true);
         this.stage.show();
     }
 
@@ -102,7 +101,7 @@ public class MatchGame {
 
         //set the cardGrid Settings
         cardGrid.setAlignment(Pos.CENTER);
-        cardGrid.setHgap(100 / this.size );
+        cardGrid.setHgap(5.0);
         cardGrid.setVgap(5.0);
         cardGrid.setPadding(new Insets(20, 20, 20, 20));
 
@@ -113,8 +112,7 @@ public class MatchGame {
         });
 
         //side Panes
-        VBox leftPane = new VBox();
-        VBox rightPane = new VBox();
+        VBox bottomPane = new VBox();
 
         //text to hold the score
         Text scoreText = new Text("" + this.score); //initialize score text
@@ -149,13 +147,12 @@ public class MatchGame {
         timeline.play();
 
         //add to left and right pane
-        leftPane.getChildren().add(scoreGroup);
-        rightPane.getChildren().add(timeGroup);
+        bottomPane.getChildren().add(scoreGroup);
+        bottomPane.getChildren().add(timeGroup);
 
         //set the nodes of the borderPane
         borderPane.setCenter(cardGrid);
-        borderPane.setLeft(leftPane);
-        borderPane.setRight(rightPane);
+        borderPane.setBottom(bottomPane);
 
         //add to game scene
         Scene gameScene = new Scene(borderPane);

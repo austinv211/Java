@@ -26,13 +26,13 @@ public class Card extends StackPane {
 
     public Card(String style, int size, int matchNumber) {
         if (size == 4) {
-            this.cardSize = 100;
+            this.cardSize = 120;
         }
         else if (size == 6) {
-            this.cardSize = 75;
+            this.cardSize = 95;
         }
         else {
-            this.cardSize = 50;
+            this.cardSize = 75;
         }
 
         this.style = style;
@@ -74,7 +74,7 @@ public class Card extends StackPane {
     private void initCard() {
 
         //card parts
-        Rectangle cardBody = new Rectangle(this.cardSize, this.cardSize * 1.5);
+        Rectangle cardBody = new Rectangle(this.cardSize, this.cardSize);
 
         cardBody.setFill(Color.WHITE);
         cardBody.setStroke(Color.BLACK);
@@ -88,8 +88,8 @@ public class Card extends StackPane {
         //picture style for the card
         String url = "/Images/" + this.style + "/" + this.matchNumber + ".jpg";
         ImageView cardBack = new ImageView(new Image(url));
-        cardBack.setFitHeight(this.cardSize - 20);
-        cardBack.setFitWidth(this.cardSize - 20);
+        cardBack.setFitHeight(this.cardSize - (this.cardSize / 10));
+        cardBack.setFitWidth(this.cardSize);
         cardBack.setPreserveRatio(true);
 
         this.getChildren().add(cardBack);
