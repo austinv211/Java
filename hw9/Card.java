@@ -86,10 +86,10 @@ public class Card extends StackPane {
         cardFront.setStroke(Color.BLACK);
 
         //picture style for the card
-        String url = "/Images/" + this.style + "/" + this.matchNumber + ".jpg";
+        String url = "resources/Images/" + this.style + "/" + this.matchNumber + ".jpg";
         ImageView cardBack = new ImageView(new Image(url));
         cardBack.setFitHeight(this.cardSize - (this.cardSize / 10));
-        cardBack.setFitWidth(this.cardSize);
+        cardBack.setFitWidth(this.cardSize - (this.cardSize / 10));
         cardBack.setPreserveRatio(true);
 
         this.getChildren().add(cardBack);
@@ -107,7 +107,7 @@ public class Card extends StackPane {
     //set flipping animation for card
     private void setCardFlip () {
 
-        RotateTransition cardFlip = new RotateTransition(Duration.millis(150), this.getChildren().get(1));
+        RotateTransition cardFlip = new RotateTransition(Duration.millis(250), this.getChildren().get(1));
 
         //rotation properties
         cardFlip.setAxis(Rotate.Y_AXIS); //rotate about the y axis of the card
@@ -128,13 +128,15 @@ public class Card extends StackPane {
 
             ObservableList<Node> paneList = FXCollections.observableArrayList(this.getChildren());
 
+            paneList.get(0).setVisible(false);
             paneList.get(2).setVisible(false);
 
             Collections.swap(paneList, 0, 2);
 
             PauseTransition pauseTransition = new PauseTransition();
-            pauseTransition.setDuration(Duration.millis(100));
+            pauseTransition.setDuration(Duration.millis(200));
             pauseTransition.setOnFinished(event -> {
+                paneList.get(0).setVisible(true);
                 paneList.get(2).setVisible(true);
                 this.getChildren().setAll(paneList);
             });

@@ -24,7 +24,7 @@ public class Menu {
                 "-fx-fill: black;";
         this.buttonStyle = "-fx-font: 22 arial;" +
                 "-fx-font-weight: bold;";
-        this.backgroundStyle = "-fx-background-image: url('background.jpg');" +
+        this.backgroundStyle = "-fx-background-image: url('/resources/background.jpg');" +
                 "-fx-background-repeat: stretch;";
         this.stage = primaryStage;
     }

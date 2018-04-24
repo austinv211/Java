@@ -18,24 +18,21 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -48,6 +45,7 @@ public class MatchGame {
     private int size;
     private Stage stage;
     private StringProperty time;
+    private Timeline timeline;
     private IntegerProperty score;
     private int maxScore;
 
@@ -122,6 +120,7 @@ public class MatchGame {
         labelForScore.setContentDisplay(ContentDisplay.RIGHT);
         labelForScore.setStyle("-fx-font: 24 Arial;");
 
+
         //create a group to hold the label and the text
         Group scoreGroup = new Group(labelForScore, scoreText);
 
@@ -140,9 +139,10 @@ public class MatchGame {
 
         EventHandler<ActionEvent> eventHandler = event -> {
             gameTimer.setTime(gameTimer.getMillisecondsTotal() + 1);
+            this.time = gameTimer.getTime();
         };
 
-        Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), eventHandler));
+        this.timeline = new Timeline(new KeyFrame(Duration.millis(1), eventHandler));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
 
@@ -168,7 +168,7 @@ public class MatchGame {
         ArrayList<Card> selectedCards = new ArrayList<>();
 
         //if the number of clicks is evenly divisible by 2
-        if((Card.getNumberOfClicks() % 2) == 0) {
+        if ((Card.getNumberOfClicks() % 2) == 0) {
             //foreach node in the cardGrid
             for (Node node : cardGrid.getChildren()) {
                 //cast the card node to a card
@@ -191,6 +191,10 @@ public class MatchGame {
                     for (Card selectedCard : selectedCards) {
                         selectedCard.setMatched(true);
                     }
+
+                    if(score.getValue() == maxScore) {
+                        getWinScene();
+                    }
                 }
                 //if not a match, pause and flip the card back
                 else {
@@ -206,6 +210,46 @@ public class MatchGame {
                 }
             }
         }
+    }
+
+    private void getWinScene() {
+        timeline.stop();
+        VBox winBox = new VBox();
+        Text winText = new Text("You Won!");
+        winText.setStyle("-fx-font: 30 Arial; -fx-font-weight: bold");
+        Text timeText = new Text("You found " + this.maxScore + " pairs in " + this.time.getValue());
+        timeText.setStyle("-fx-font: 30 Arial;");
+
+        Button playAgainButton = new Button("Play again");
+        Button quitButton = new Button("Quit");
+
+        quitButton.setOnMouseClicked(event -> {
+            System.exit(0);
+        });
+
+        playAgainButton.setOnMouseClicked(event -> {
+            this.stage.close();
+            MainMenu mainMenu = new MainMenu(this.stage);
+            Scene startMenuScene = mainMenu.getScene();
+            this.stage.setScene(startMenuScene);
+            this.stage.setTitle("Main");
+            this.stage.setResizable(false);
+            this.stage.show();
+        });
+
+        playAgainButton.setStyle("-fx-font: 22 arial;-fx-font-weight: bold;");
+        quitButton.setStyle("-fx-font: 22 arial;-fx-font-weight: bold;");
+
+        winBox.getChildren().add(winText);
+        winBox.getChildren().add(timeText);
+        winBox.getChildren().add(playAgainButton);
+        winBox.getChildren().add(quitButton);
+
+        winBox.setAlignment(Pos.CENTER);
+        winBox.setSpacing(50);
+
+        Scene winScene = new Scene(winBox, 500, 500);
+        this.stage.setScene(winScene);
     }
 
 
