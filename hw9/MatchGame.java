@@ -248,12 +248,12 @@ public class MatchGame {
             this.stage.close(); //close the current stage
 
             //get the main menu
-            MainMenu mainMenu = new MainMenu(this.stage);
+            SecondaryMenu secondaryMenu = new SecondaryMenu(this.stage);
 
             //set the scene
-            Scene startMenuScene = mainMenu.getScene();
+            Scene startMenuScene = secondaryMenu.getScene();
             this.stage.setScene(startMenuScene);
-            this.stage.setTitle("Main"); //set the title
+            this.stage.setTitle("Match Game"); //set the title
             this.stage.setResizable(false); //set resizeable to false
             this.stage.show(); //show the stage
         });
