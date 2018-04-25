@@ -2,7 +2,7 @@
 NAME: SecondaryMenu.java
 DESCRIPTION: Class for secondary menu to choose game options
 AUTHOR: Austin Vargason
-DATE MODIFIED: 4/12/18
+DATE MODIFIED: 4/24/18
  */
 
 //homework 9

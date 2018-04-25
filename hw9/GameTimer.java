@@ -1,14 +1,17 @@
+/*
+Name: GameTimer.java
+Description: timer to increment time for game
+Author: Austin Vargason
+Date Modified: 4/24/18
+*/
+
+//homework 9 package
 package hw9;
 
-import javafx.beans.property.LongProperty;
-import javafx.beans.property.SimpleLongProperty;
+//imports
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 public class GameTimer {
     //data fields
@@ -27,14 +30,17 @@ public class GameTimer {
         this.time = new SimpleStringProperty("" + this.minutes + this.seconds);
     }
 
+    //getter for total milliseconds
     public long getMillisecondsTotal() {
         return this.millisecondsTotal;
     }
 
+    //getter for string property time
     public StringProperty getTime() {
         return this.time;
     }
 
+    //method to set the time string property
     public void setTime(long milliseconds) {
         this.millisecondsTotal = milliseconds;
         this.minutes = (int)(milliseconds / 1000) / 60;

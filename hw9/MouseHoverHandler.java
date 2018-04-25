@@ -2,7 +2,7 @@
 NAME: MouseHoverHandler.java
 DESCRIPTION: Class to store hover handler (mouse entered and exited)
 AUTHOR: Austin Vargason
-DATE MODIFIED: 4/12/18
+DATE MODIFIED: 4/24/18
  */
 
 //homework 9 package
