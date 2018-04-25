@@ -1,5 +1,14 @@
+/*
+Name: Card.java
+Description: Class for a card in the game
+Author: Austin Vargas
+Date Modified: 4/24/18
+ */
+
+//homework 9
 package hw9;
 
+//imports
 import javafx.animation.Animation;
 import javafx.animation.RotateTransition;
 import javafx.collections.FXCollections;
