@@ -67,17 +67,20 @@ public class MatchGame {
     //method to build the scene of the game
     private Scene initGameScene() {
 
-
+        //border pane to hold the game
         BorderPane borderPane = new BorderPane();
+
+        //gridPane to hold the cards
         GridPane cardGrid = new GridPane();
 
-
+        //number of cards is size squared
         int numberOfCards = this.size * this.size;
 
-        //cards
+        //cards arrayList
         ArrayList<Card> cardArrayList = new ArrayList<Card>();
 
 
+        //intiate the cards and their matches
         for (int i = 1; i <= (numberOfCards / 2); i++) {
             cardArrayList.add(new Card(this.style, this.size, i));
             cardArrayList.add(new Card(this.style, this.size, i));
@@ -137,11 +140,13 @@ public class MatchGame {
         Group timeGroup = new Group(timerLabel, timerText);
         timeGroup.setStyle("-fx-font: 24 Arial");
 
+        //event handler for timer
         EventHandler<ActionEvent> eventHandler = event -> {
             gameTimer.setTime(gameTimer.getMillisecondsTotal() + 1);
             this.time = gameTimer.getTime();
         };
 
+        //create and play timeline, updates every ms
         this.timeline = new Timeline(new KeyFrame(Duration.millis(1), eventHandler));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
@@ -212,44 +217,64 @@ public class MatchGame {
         }
     }
 
+    //method to get what to do when you win the game
     private void getWinScene() {
-        timeline.stop();
-        VBox winBox = new VBox();
-        Text winText = new Text("You Won!");
-        winText.setStyle("-fx-font: 30 Arial; -fx-font-weight: bold");
-        Text timeText = new Text("You found " + this.maxScore + " pairs in " + this.time.getValue());
-        timeText.setStyle("-fx-font: 30 Arial;");
 
+        //stop the timeline for timer
+        timeline.stop();
+
+        //vbox to hold winscene options
+        VBox winBox = new VBox();
+
+        //you won text
+        Text winText = new Text("You Won!");
+        winText.setStyle("-fx-font: 30 Arial; -fx-font-weight: bold"); //set the style
+
+        //details text
+        Text timeText = new Text("You found " + this.maxScore + " pairs in " + this.time.getValue());
+        timeText.setStyle("-fx-font: 30 Arial;"); //set the style
+
+        //buttons
         Button playAgainButton = new Button("Play again");
         Button quitButton = new Button("Quit");
 
+        //quit the game when clicked
         quitButton.setOnMouseClicked(event -> {
             System.exit(0);
         });
 
+        //start the game over when clicked
         playAgainButton.setOnMouseClicked(event -> {
-            this.stage.close();
+            this.stage.close(); //close the current stage
+
+            //get the main menu
             MainMenu mainMenu = new MainMenu(this.stage);
+
+            //set the scene
             Scene startMenuScene = mainMenu.getScene();
             this.stage.setScene(startMenuScene);
-            this.stage.setTitle("Main");
-            this.stage.setResizable(false);
-            this.stage.show();
+            this.stage.setTitle("Main"); //set the title
+            this.stage.setResizable(false); //set resizeable to false
+            this.stage.show(); //show the stage
         });
 
+        //set button styles
         playAgainButton.setStyle("-fx-font: 22 arial;-fx-font-weight: bold;");
         quitButton.setStyle("-fx-font: 22 arial;-fx-font-weight: bold;");
 
+        //add items to the vbox
         winBox.getChildren().add(winText);
         winBox.getChildren().add(timeText);
         winBox.getChildren().add(playAgainButton);
         winBox.getChildren().add(quitButton);
 
+        //set the alignment and spacing
         winBox.setAlignment(Pos.CENTER);
         winBox.setSpacing(50);
 
+        //add to the scene
         Scene winScene = new Scene(winBox, 500, 500);
-        this.stage.setScene(winScene);
+        this.stage.setScene(winScene); //set scene
     }
 
 

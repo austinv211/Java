@@ -29,7 +29,7 @@ public class Menu {
         this.stage = primaryStage;
     }
 
-    //getter
+    //getters
     public String getTextStyle() {
         return this.textStyle;
     }
